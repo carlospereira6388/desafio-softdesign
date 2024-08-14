@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "c888e093-770e-4f39-adce-7dc729eabc90",
+		"name": "Desafio SoftDesign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32423249"
+	},
+	"item": [
+		{
+			"name": "Associates",
+			"item": [
+				{
+					"name": "Criar um novo associado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Carlos\",\n    \"document\": \"43490855809\"\n}"
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/associates",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associates"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Criar uma nova pauta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pauta 1\",\n    \"description\": \"Pauta teste\"\n}"
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/agendas",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agendas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Abrir uma sessão de votação",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/agendas/1/sessions",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agendas",
+								"1",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar um voto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"associateId\": 1,\n    \"vote\": \"Sim\"\n}"
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/agendas/1/votes",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agendas",
+								"1",
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter resultado da votação",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/agendas/1/results",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"agendas",
+								"1",
+								"results"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
